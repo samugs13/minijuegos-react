@@ -1,5 +1,4 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
 import { LangContext } from "../lang/LangContext.component";
 
 export default function Reset(props) {
@@ -8,15 +7,15 @@ export default function Reset(props) {
   }
 
   return(
-    <Button className="btn btn-warning" onClick={click} >
+    <button className="btn btn-warning" onClick={click} >
       <LangContext.Consumer>
-              {(context) => {
-              return (
-                <p className="texto">{context.dictionary["reset"]}</p>
-              )}
-              }
-            </LangContext.Consumer>
-    </Button>
+        {(context) => {
+        return (
+          <p className="texto">{context.dictionary["reset"]}</p>
+        )}
+        }
+      </LangContext.Consumer>
+    </button>
   );
 
 }
