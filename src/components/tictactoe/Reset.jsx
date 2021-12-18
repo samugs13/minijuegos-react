@@ -1,5 +1,4 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
 
 export default function Reset(props) {
   function click() {
@@ -7,9 +6,9 @@ export default function Reset(props) {
   }
 
   return(
-    <Button className="btn btn-warning" onClick={click} >
+    <button className="btn btn-warning" onClick={click} >
       Reset
-    </Button>
+    </button>
   );
 
 }
