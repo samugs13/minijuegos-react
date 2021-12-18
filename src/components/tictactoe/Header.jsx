@@ -8,10 +8,9 @@ export default function Header(props) {
           <Card.Title>Turn</Card.Title>
           <Card.Text>
             {props.text}
-            
+
           </Card.Text>
         </Card.Body>
       </Card>
     );
     }
-
