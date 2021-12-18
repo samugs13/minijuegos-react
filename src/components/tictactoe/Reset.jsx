@@ -7,9 +7,9 @@ export default function Reset(props) {
   }
 
   return(
-    <Button onClick={click} >
+    <Button className="btn btn-warning" onClick={click} >
       Reset
     </Button>
   );
-    
+
 }
