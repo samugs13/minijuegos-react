@@ -1,7 +1,7 @@
-import './css/App.css';
 import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import './css/App.css';
 
 import Home from './components/home/home.component';
 import Quiz from './components/quiz/quiz.component';

@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  color: #262828;
+}
+
+h2{
+	color: red;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+.no_clickable {
+	cursor: not-allowed !important;
+}
