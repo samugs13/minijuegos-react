@@ -8,10 +8,11 @@ import Home from './components/home/home.component';
 import Quiz from './components/quiz/quiz.component';
 import Tictactoe from './components/tictactoe/tictactoe.component';
 
-import es from './lang/es.json';
-import en from './lang/en.json';
-import { LangContext } from "./lang/LangContext";
-import LangSelector from "./lang/LangSelector";
+// Language selector
+import { LangContext } from "./components/lang/LangContext.component";
+import LangSelector from "./components/lang/LangSelector.component";
+import es from './assets/lang/es.json';
+import en from './assets/lang/en.json';
 const dictionaryList = { en, es };
 
 

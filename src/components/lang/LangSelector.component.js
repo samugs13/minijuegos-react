@@ -1,4 +1,4 @@
-import { LangContext } from './LangContext';
+import { LangContext } from './LangContext.component';
 
 export default function LangSelector(props) {
 	return (

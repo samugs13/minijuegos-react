@@ -1,6 +1,6 @@
 import React, { Component, useContext } from 'react';
 import '../../css/home.css';
-import { LangContext } from "../../lang/LangContext";
+import { LangContext } from "../lang/LangContext.component";
 
 export default class Home extends Component {
 	render() {

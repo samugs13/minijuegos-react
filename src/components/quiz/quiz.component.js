@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LangSelector from "../../lang/LangSelector";
+import LangSelector from "../lang/LangSelector.component";
 
 export default class Quiz extends Component {
   render() {
