@@ -24,7 +24,7 @@ function App() {
 	const [lang, setLang] = useState('es');
 
 	return (
-		<div className="App">		
+		<div className="App">
 			<LangContext.Provider value={{handleLanguageChange: handleLanguageChange, userLang: lang, dictionary: dictionaryList[lang]}}>
 				<BrowserRouter>
 					<nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -42,12 +42,7 @@ function App() {
 								</li>
 							</div>
 							<div className="d-flex">
-								<div className="dropdown me-2">
-									<select defaultValue="en" className="form-select" aria-label="Select language">
-										<option value="en">English</option>
-										<option value="es">Español</option>
-									</select>
-								</div>
+								<LangSelector />
 							</div>
 						</div>
 					</nav>
