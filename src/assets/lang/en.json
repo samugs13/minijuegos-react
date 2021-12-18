@@ -9,5 +9,8 @@
     "delete": "Delete",
     "edit": "Edit",
     "upload": "Upload",
-    "view": "View"
+    "view": "View",
+    "turn": "Turn",
+    "number": "Number of moves:",
+    "turnof": "Turn of"
 }

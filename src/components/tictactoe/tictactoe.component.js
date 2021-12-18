@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { LangContext } from "../lang/LangContext.component";
 import Header from './Header.jsx';
 import Board from './Board.jsx';
 import Reset from './Reset.jsx';
@@ -52,14 +53,20 @@ export default function Tictactoe(props) {
     ]);
   }
 
+  let text = turn;
   
-  let text = "Turn of " + turn;
-
   return (
     <div>
       <Header text={text}/>
       <Board values={values}  appClick={appClick}/>
-      <h3>Number of moves: {moves}</h3>
+      <h3><LangContext.Consumer>
+              {(context) => {
+              return (
+                <p className="texto">{context.dictionary["number"]} {moves}</p>
+              )}
+              }
+          </LangContext.Consumer>
+        </h3>
       <Reset resetClick={resetClick}></Reset>
     </div>
   );
