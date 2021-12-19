@@ -3,6 +3,7 @@ import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './css/App.css';
+import { quizzes } from "./assets/mock-data";
 
 import Home from './components/home/home.component';
 import Quiz from './components/quiz/quiz.component';
@@ -16,14 +17,14 @@ import en from './assets/lang/en.json';
 const dictionaryList = { en, es };
 
 
-function App() {
+function App(props) {
 
 	const handleLanguageChange = (event) => {
 		setLang(event.target.value);
 	}
 
 	const [lang, setLang] = useState('es');
-
+	
 	return (
 		<div className="App">
 			<LangContext.Provider value={{handleLanguageChange: handleLanguageChange, userLang: lang, dictionary: dictionaryList[lang]}}>
@@ -47,7 +48,6 @@ function App() {
 							</div>
 						</div>
 					</nav>
-
 
 					<Routes>
 						<Route path="/" element={<Home/>}/>
