@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Question(props) {
+export default function Answer(props) {
 	function handleAnswerChange(e) {
 		props.onAnswerChange(e.target.value);
 	}
