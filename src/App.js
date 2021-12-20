@@ -3,7 +3,6 @@ import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './css/App.css';
-import { quizzes } from "./assets/mock-data";
 
 import Home from './components/home/home.component';
 import Quiz from './components/quiz/quiz.component';
@@ -17,7 +16,7 @@ import en from './assets/lang/en.json';
 const dictionaryList = { en, es };
 
 
-function App(props) {
+function App() {
 
 	const handleLanguageChange = (event) => {
 		setLang(event.target.value);

@@ -1,21 +1,19 @@
 import React, { Component, useState } from 'react';
 import LangSelector from "../lang/LangSelector.component";
 import { quizzes } from "../../assets/mock-data";
+import Game from './Game.component'
 
 export default function Quiz() {
 
-	let initialState = {
-		score: 0,
-		finished: false,
-		currentQuiz: 0,
-		quizzes: []
-	}
-	  
-	const [quizzes, setQuizzes] = useState([]);
+  const [whatquiz, setQuizzes] = useState(quizzes);
+  const [currentQuiz, setCurrentQuiz] = useState(0);
+  const [score, setScore] = useState(0);
+  const [finished, isFinished] = useState(false);
 
   return (
     <div>
       <h1>QUIZ</h1>
+	  <Game quiz={whatquiz[currentQuiz]}/>
     </div>
   );
 }
