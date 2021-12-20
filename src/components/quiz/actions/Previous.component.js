@@ -2,9 +2,11 @@ import React, { Component} from 'react';
 import { LangContext } from "../../lang/LangContext.component";
 
 export default function Previous(props) {
+  
   function click() {
     props.previousClick();
   }
+
   return(
     <button className="btn btn-info" onClick={click} >
       <LangContext.Consumer>
@@ -17,4 +19,4 @@ export default function Previous(props) {
     </button>
   );
   
-  }
+}

@@ -61,9 +61,9 @@ export default function Tictactoe(props) {
       <Board values={values}  appClick={appClick}/>
       <h3><LangContext.Consumer>
               {(context) => {
-                return (
-                  <p className="texto">{context.dictionary["number"]} {moves}</p>
-                )}
+              return (
+                <p className="texto">{context.dictionary["number"]} {moves}</p>
+              )}
               }
           </LangContext.Consumer>
         </h3>

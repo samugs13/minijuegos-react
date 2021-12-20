@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import { LangContext } from "../../lang/LangContext.component";
 
 export default function Next(props) {
+  
   function click() {
     props.nextClick();
   }
@@ -18,4 +19,4 @@ export default function Next(props) {
     </button>
   );
   
-  }
+}
