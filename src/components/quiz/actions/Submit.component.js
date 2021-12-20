@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import { LangContext } from "../lang/LangContext.component";
+import { LangContext } from "../../lang/LangContext.component";
 
 export default function Submit(props) {
 

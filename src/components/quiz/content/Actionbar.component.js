@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
-import Next from './Next.component';
-import Previous from './Previous.component';
-import Submit from './Submit.component';
+import Next from '../actions/Next.component';
+import Previous from '../actions/Previous.component';
+import Submit from '../actions/Submit.component';
 
 export default function Actionbar(props) {
     return (
