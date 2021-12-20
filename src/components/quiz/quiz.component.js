@@ -16,16 +16,12 @@ export default function Quiz() {
 	}, []);
 
 	function nextClick(){
-
 		if (quizzes.length==0 || currentQuiz==9) setDisabled(true)
-
 		else setCurrentQuiz(currentQuiz + 1);
 	}
 
 	function previousClick(){
-
 		if (quizzes.length==0 || currentQuiz==0) setDisabled(true)
-
 		else setCurrentQuiz(currentQuiz - 1);
 	}
 
