@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -23,7 +23,7 @@ function App() {
 	}
 
 	const [lang, setLang] = useState('es');
-	
+
 	return (
 		<div className="App">
 			<LangContext.Provider value={{handleLanguageChange: handleLanguageChange, userLang: lang, dictionary: dictionaryList[lang]}}>
@@ -53,7 +53,7 @@ function App() {
 						<Route path="/quiz/" element={<Quiz/>}/>
 						<Route path="/tictactoe/" element={<Tictactoe/>}/>
 					</Routes>
-				</BrowserRouter>,
+				</BrowserRouter>
 			</LangContext.Provider>
 		</div>
 	);

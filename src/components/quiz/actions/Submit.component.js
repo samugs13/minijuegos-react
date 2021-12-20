@@ -4,7 +4,7 @@ import { LangContext } from "../../lang/LangContext.component";
 export default function Submit(props) {
 
 	return(
-		<button className="btn btn-danger">
+		<button id="submit-btn" className="btn btn-danger" onClick={props.click}>
 			<LangContext.Consumer>
 				{(context) => {
 					return (

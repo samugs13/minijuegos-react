@@ -1,14 +1,10 @@
-import React  from 'react';
+import React, {useEffect}  from 'react';
 import { LangContext } from "../../lang/LangContext.component";
 
 export default function Next(props) {
 
-	function click() {
-		props.nextClick();
-	}
-
 	return(
-		<button className="btn btn-info" onClick={click}>
+		<button id="next-btn" className="btn btn-info" onClick={props.click}>
 			<LangContext.Consumer>
 				{(context) => {
 					return (
