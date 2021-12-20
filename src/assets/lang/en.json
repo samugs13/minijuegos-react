@@ -12,5 +12,9 @@
     "view": "View",
     "turn": "Turn",
     "number": "Number of moves:",
-    "turnof": "Turn of"
+    "turnof": "Turn of",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "score": "Score"
 }

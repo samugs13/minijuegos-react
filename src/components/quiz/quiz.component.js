@@ -13,7 +13,7 @@ export default function Quiz() {
   return (
     <div>
       <h1>QUIZ</h1>
-	  <Game quiz={whatquiz[currentQuiz]}/>
+	  <Game quiz={whatquiz[currentQuiz]} score={score}/>
     </div>
   );
 }

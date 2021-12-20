@@ -12,5 +12,9 @@
     "view": "Ver",
     "turn": "Turno",
     "number": "Número de movimientos:",
-    "turnof": "Turno de"
+    "turnof": "Turno de",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "submit": "Entregar",
+    "score": "Puntuación"
 }
