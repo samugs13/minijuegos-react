@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React  from 'react';
 import { LangContext } from "../../lang/LangContext.component";
 
 export default function Next(props) {
