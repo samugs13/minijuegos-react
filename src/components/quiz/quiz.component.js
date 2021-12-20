@@ -10,10 +10,18 @@ export default function Quiz() {
   const [score, setScore] = useState(0);
   const [finished, isFinished] = useState(false);
 
+  function nextClick(){
+	setCurrentQuiz(currentQuiz + 1);
+  }
+
+  function previousClick(){
+    setCurrentQuiz(currentQuiz - 1);
+  }
+
   return (
     <div>
       <h1>QUIZ</h1>
-	  <Game quiz={whatquiz[currentQuiz]} score={score}/>
+	  <Game quiz={whatquiz[currentQuiz]} score={score} nextClick={nextClick} previousClick={previousClick}/>
     </div>
   );
 }
