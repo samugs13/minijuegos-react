@@ -8,14 +8,23 @@ export default function Quiz() {
   const [whatquiz, setQuizzes] = useState(quizzes);
   const [currentQuiz, setCurrentQuiz] = useState(0);
   const [score, setScore] = useState(0);
-  const [finished, isFinished] = useState(false);
+  const [finished, setFinished] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   function nextClick(){
-	setCurrentQuiz(currentQuiz + 1);
+	
+	if (whatquiz.length==0 || currentQuiz==9)
+		setDisabled(true)
+	
+	else setCurrentQuiz(currentQuiz + 1);
   }
 
   function previousClick(){
-    setCurrentQuiz(currentQuiz - 1);
+
+	if (whatquiz.length==0 || currentQuiz==0)
+		setDisabled(true)
+    
+	else setCurrentQuiz(currentQuiz - 1);
   }
 
   return (
