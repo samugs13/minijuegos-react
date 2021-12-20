@@ -6,6 +6,6 @@ export default function Question(props) {
 	}
 
 	return (
-		<input type="text" onChange={handleAnswerChange}></input>
+		<input id="user-answer" type="text" onChange={handleAnswerChange}></input>
 	);
 }

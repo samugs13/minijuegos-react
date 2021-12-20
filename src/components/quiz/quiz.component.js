@@ -16,19 +16,26 @@ export default function Quiz() {
 	const [score, setScore] = useState(0);
 	const [finished, setFinished] = useState(false);
 
-	const [userAnswer, setUserAnswer] = useState('');
+	const [userAnswers, setUserAnswers] = useState([]);
 	const [isCorrect, setIsCorrect] = useState(false);
 
 	useEffect(() => {
 		if (mockData.length > 0) {
 			setQuizzes(mockData);
+			setUserAnswers(new Array(mockData.length).fill(null));
 			setLoaded(true);
-			console.log(quizzes);
 		}
 		changeButtonState('prev-btn', false);
 	}, []);
 
 	useEffect(() => {
+		// Set saved user answer
+		const answerField = document.getElementById('user-answer');
+		if (answerField) {
+			answerField.value = userAnswers[currentQuiz];
+		}
+
+		// Set buttons state
 		if (!loaded) {
 			changeButtonState('prev-btn', false);
 			changeButtonState('next-btn', false);
@@ -63,11 +70,18 @@ export default function Quiz() {
 		}
 	}
 
+	function onChangeUserAnswer(answer){
+		const list = [...userAnswers];
+		list[currentQuiz] = answer;
+		setUserAnswers(list);
+	}
+
 	function handleAnswerSubmit() {
-		if (userAnswer.toLowerCase() === quizzes[currentQuiz].answer.toLowerCase()) {
+		if (userAnswers[currentQuiz].toLowerCase() === quizzes[currentQuiz].answer.toLowerCase()) {
 			setScore(score + 1);
 			setIsCorrect(true);
 			showNotification();
+			nextClick();
 		} else {
 			setIsCorrect(false);
 			showNotification();
@@ -75,23 +89,26 @@ export default function Quiz() {
 	}
 
 	function showNotification() {
-		var toastAnswer = document.getElementById("toast-answer")
-		var toast = new Toast(toastAnswer);
+		const toastAnswer = document.getElementById("toast-answer")
+		const toast = new Toast(toastAnswer);
 		toast.show()
 	}
-
-
 
 	return (
 		<div>
 			<h1>
 			QUIZ
-				<span className="badge bg-success">
+				<span
+					className="badge bg-success"
+					style={{
+						marginLeft: "10px",
+					}}
+				>
 					{score}
 				</span>
 			</h1>
 			{quizzes[currentQuiz] ?
-			<Game quiz={quizzes[currentQuiz]} onChangeUserAnswer={setUserAnswer} nextClick={nextClick} previousClick={previousClick}/>
+			<Game quiz={quizzes[currentQuiz]} onChangeUserAnswer={onChangeUserAnswer} nextClick={nextClick} previousClick={previousClick}/>
 			:
 			<div className="spinner-border" role="status">
 				<span className="visually-hidden">Loading...</span>
