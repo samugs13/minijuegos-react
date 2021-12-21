@@ -132,7 +132,7 @@ export default function Quiz() {
 			<h1>{lang.dictionary["QUIZ"]}</h1>
 			{quizzes[currentQuiz] ? (
 				<div>
-					<QuizNavBar index={currentQuiz} total={quizzes.length} answerCorrect={answerCorrect} onClick={setCurrentQuiz}/>
+					<QuizNavBar index={currentQuiz} total={quizzes.length} userAnswers={userAnswers} answerCorrect={answerCorrect} onClick={setCurrentQuiz}/>
 					{finished && (
 						<Score score={score}/>
 					)}

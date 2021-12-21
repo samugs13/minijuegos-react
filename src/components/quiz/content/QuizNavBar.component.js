@@ -5,9 +5,10 @@ export default function QuizNavBar(props) {
 	function getButtonColor(i){
 		if(!props.answerCorrect) return "-primary";
 
-		if(props.answerCorrect[i] === null) return "-primary";
-		else if(props.answerCorrect[i]) return "-success";
-		else return "-danger";
+		if(props.answerCorrect[i]) return "-success";
+		else if(props.answerCorrect[i] === false) return "-danger";
+		else if(props.userAnswers && !props.userAnswers[i]) return "-secondary";
+		else return "-primary";
 	}
 
 	function getButtonSelected(i) {
