@@ -9,7 +9,7 @@ export default function Game(props) {
 
 	return (
 		<div>
-			<Question question={quiz.question}/>
+			<Question question={quiz.question} photo={quiz.attachment}/>
 			<Author author={quiz.author}/>
 			<Answer onAnswerChange={props.onChangeUserAnswer}/>
 		</div>
