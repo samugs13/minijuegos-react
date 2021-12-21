@@ -88,9 +88,11 @@ export default function Quiz() {
 			setIsCorrect(true);
 			showNotification();
 			nextClick();
+			setFinished(true);
 		} else {
 			setIsCorrect(false);
 			showNotification();
+			setFinished(true);
 		}
 	}
 
@@ -114,7 +116,7 @@ export default function Quiz() {
 				</span>
 			</h1>
 			{quizzes[currentQuiz] ?
-			<Game quiz={quizzes[currentQuiz]} onChangeUserAnswer={onChangeUserAnswer} nextClick={nextClick} previousClick={previousClick}/>
+			<Game quiz={quizzes[currentQuiz]} onChangeUserAnswer={onChangeUserAnswer} nextClick={nextClick} previousClick={previousClick} finished={finished} score={score}/>
 			:
 			<div className="spinner-border" role="status">
 				<span className="visually-hidden">Loading...</span>
