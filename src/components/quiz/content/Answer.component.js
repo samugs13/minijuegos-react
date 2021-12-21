@@ -35,7 +35,7 @@ export default function Answer(props) {
 				{dictionary.correct}
 			</div>
 			<div className="invalid-feedback">
-				{dictionary.incorrect}
+				{`${dictionary.incorrect}: ${props.correctAnswer}`}
 			</div>
 		</div>
 	);
