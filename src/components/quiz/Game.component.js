@@ -10,14 +10,15 @@ export default function Game(props) {
 
 	return (
 		<div>
-			{props.finished ?
+			{props.finished ? (
 				<Score score={props.score}/>
-				:
+			) : (
 				<div>
 					<Question question={quiz.question} photo={quiz.attachment}/>
 					<Author author={quiz.author}/>
 					<Answer onAnswerChange={props.onChangeUserAnswer}/>
 				</div>
+			)
 			}
 		</div>
 	);

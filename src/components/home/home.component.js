@@ -13,7 +13,7 @@ export default class Home extends Component {
 							<h1 className="titulo">{context.dictionary["title"]}</h1>
 							<p className="texto">{context.dictionary["text"]}</p>
 						</div>
-						}
+					}
 					}
 				</LangContext.Consumer>
 			</div>

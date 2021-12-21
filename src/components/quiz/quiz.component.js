@@ -22,11 +22,10 @@ export default function Quiz() {
 	async function fetchData() {
 		const res = await fetch("https://core.dit.upm.es/api/quizzes/random10wa?token=c077a2641b40e0fb129a");
 		const myjson = await res.json();
-		console.log(myjson);
 		setQuizzes(myjson);
 		setUserAnswers(new Array(myjson.length).fill(""));
 		setLoaded(true);
-	  }
+	}
 
 	useEffect(() => {
 		fetchData();
@@ -91,16 +90,14 @@ export default function Quiz() {
 		const list = [...userAnswers];
 		list[currentQuiz] = answer;
 		setUserAnswers(list);
-		console.log(userAnswers);
 	}
 
 	function handleAnswerSubmit() {
 		let acertadas = 0
-		for (let i = 0; i < quizzes.length; i++) {	
+		for (let i = 0; i < quizzes.length; i++) {
 			if (userAnswers[i].toLowerCase() === quizzes[i].answer.toLowerCase()) {
 				acertadas += 1;
 				setIsCorrect(true);
-				console.log(score);
 			}
 			else {
 				setIsCorrect(false);

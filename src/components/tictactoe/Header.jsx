@@ -12,13 +12,13 @@ export default function Header(props) {
 		>
 			<div className="card-body">
 				<div className="card-title">
-				<LangContext.Consumer>
-              {(context) => {
-              return (
-                <p className="texto">{context.dictionary["turn"]}</p>
-              )}
-              }
-            </LangContext.Consumer>
+					<LangContext.Consumer>
+						{(context) => {
+							return (
+								<p className="texto">{context.dictionary["turn"]}</p>
+							)}
+						}
+					</LangContext.Consumer>
 				</div>
 				<div className="card-text">
 					{props.text}
