@@ -17,5 +17,15 @@
     "previous": "Anterior",
     "submit": "Entregar",
     "score": "Puntuación",
-    "replay": "Volver a jugar"
+    "replay": "Volver a jugar",
+    "author": "Creado por:",
+    "tictactoe": "Tres en raya",
+    "quiz": "Preguntas",
+    "QUIZ": "PREGUNTAS",
+    "player1": "Jugador 1 - Xs",
+    "player2": "Jugador 2 - 0s",
+    "minigames": "Minijuegos",
+    "correct": "Correcto",
+    "incorrect": "Incorrecto",
+    "home": "Página principal"
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { LangContext } from "../lang/LangContext.component";
 
 export default function Reset(props) {
@@ -6,16 +6,12 @@ export default function Reset(props) {
 		props.resetClick();
 	}
 
-	return(
-		<button className="btn btn-warning" onClick={click} >
-			<LangContext.Consumer>
-				{(context) => {
-					return (
-						<p className="texto">{context.dictionary["reset"]}</p>
-					)}
-				}
-			</LangContext.Consumer>
-		</button>
-	);
+  const lang = useContext(LangContext);
+
+  return(
+    <button className="btn btn-warning" onClick={click} >
+      <p className="texto">{lang.dictionary["reset"]}</p>
+    </button>
+  );
 
 }

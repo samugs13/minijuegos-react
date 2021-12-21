@@ -1,19 +1,17 @@
 import React from 'react';
 import { LangContext } from "../../lang/LangContext.component";
+import { useContext } from 'react';
+
 
 export default function Score(props) {
 
+	const lang = useContext(LangContext);
+
 	return (
 		<h1>
-			<LangContext.Consumer>
-				{(context) => {
-					return (
-						<span className="badge bg-success" style={{marginLeft: "10px",}}>
-							{context.dictionary["score"]}: {props.score}/10
-						</span>
-					)}
-				}
-			</LangContext.Consumer>
+			<span className="badge bg-success" style={{marginLeft: "10px",}}>
+				{lang.dictionary["score"]}: {props.score}/10
+			</span>
 		</h1>
 	);
 }

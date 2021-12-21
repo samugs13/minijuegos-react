@@ -4,22 +4,25 @@ import Header from './Header.jsx';
 import Board from './Board.jsx';
 import Reset from './Reset.jsx';
 
-const PLAYERX = "Player 1 - Xs";
-const PLAYER0 = "Player 2 - 0s";
-
 export default function Tictactoe(props) {
-	const [turn, setTurn] = useState(PLAYERX);
-	const [moves, setMoves] = useState(0);
-	const [values, setValues] = useState([
-		['-', '-', '-'],
-		['-', '-', '-'],
-		['-', '-', '-']
-	]);
 
-	useEffect(() => {
-		// Update the document title using the browser API
-		document.title = `Turn of ${turn}`;
-	});
+  const lang = useContext(LangContext);
+
+  const PLAYERX = lang.dictionary["player1"];
+  const PLAYER0 = lang.dictionary["player2"];
+
+  const [turn, setTurn] = useState(PLAYERX);
+  const [moves, setMoves] = useState(0);
+  const [values, setValues] = useState([
+    ['-', '-', '-'],
+    ['-', '-', '-'],
+    ['-', '-', '-']
+    ]);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    document.title = lang.dictionary["turn"] + turn;
+  });
 
 	useEffect(() => {
 		async function fetchData() {
@@ -52,23 +55,18 @@ export default function Tictactoe(props) {
 		]);
 	}
 
-	let text = turn;
-
-	return (
-		<div>
-			<Header text={text}/>
-			<Board values={values}  appClick={appClick}/>
-			<h3><LangContext.Consumer>
-				{(context) => {
-					return (
-						<p className="texto">{context.dictionary["number"]} {moves}</p>
-					)}
-				}
-			</LangContext.Consumer>
-			</h3>
-			<Reset resetClick={resetClick}></Reset>
-		</div>
-	);
+  let text = lang.dictionary["turnof"] + " " + turn;
+  
+  return (
+    <div>
+      <Header text={text}/>
+      <Board values={values}  appClick={appClick}/>
+      <h3>
+          <p className="texto">{lang.dictionary["number"]} {moves}</p>
+        </h3>
+      <Reset resetClick={resetClick}></Reset>
+    </div>
+  );
 
 
 }

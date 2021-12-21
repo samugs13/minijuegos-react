@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { LangContext } from "../lang/LangContext.component";
 
 export default function Header(props) {
+
+	const lang = useContext(LangContext);
+
 	return (
 		<div
 			className="card"
@@ -12,14 +15,9 @@ export default function Header(props) {
 		>
 			<div className="card-body">
 				<div className="card-title">
-					<LangContext.Consumer>
-						{(context) => {
-							return (
-								<p className="texto">{context.dictionary["turn"]}</p>
-							)}
-						}
-					</LangContext.Consumer>
+               		 <p className="texto">{lang.dictionary["turn"]}</p>
 				</div>
+				
 				<div className="card-text">
 					{props.text}
 				</div>
