@@ -19,19 +19,18 @@ export default function Quiz() {
 	const [userAnswers, setUserAnswers] = useState([]);
 	const [isCorrect, setIsCorrect] = useState(false);
 
-	useEffect(() => {
+	async function fetchData() {
+		const res = await fetch("https://core.dit.upm.es/api/quizzes/random10wa?token=c077a2641b40e0fb129a");
+		const myjson = await res.json();
+		console.log(myjson);
+		setQuizzes(myjson);
+		setUserAnswers(new Array(myjson.length).fill(""));
+		setLoaded(true);
+	  }
 
-		async function fetchData() {
-			const res = await fetch("https://core.dit.upm.es/api/quizzes/random10wa?token=c077a2641b40e0fb129a");
-			const myjson = await res.json();
-			console.log(myjson);
-			setQuizzes(myjson);
-			setUserAnswers(new Array(myjson.length).fill(""));
-			setLoaded(true);
-		  }
-	  
-		  fetchData();
-		  changeButtonState('prev-btn', false);
+	useEffect(() => {
+		fetchData();
+		changeButtonState('prev-btn', false);
 	}, []);
 
 	useEffect(() => {
@@ -67,6 +66,18 @@ export default function Quiz() {
 
 	function previousClick(){
 		setCurrentQuiz(currentQuiz - 1);
+	}
+
+	function replayClick(){
+		setQuizzes([]);
+		setLoaded(false);
+		setCurrentQuiz(0);
+		setScore(0);
+		setFinished(false);
+		setUserAnswers([])
+		setIsCorrect(false);
+		fetchData();
+		changeButtonState('prev-btn', false);
 	}
 
 	function changeButtonState(buttonName, state){
@@ -116,7 +127,7 @@ export default function Quiz() {
 				<span className="visually-hidden">Loading...</span>
 			</div>
 			}
-			<Actionbar nextClick={nextClick} previousClick={previousClick} submitClick={handleAnswerSubmit} />
+			<Actionbar nextClick={nextClick} previousClick={previousClick} submitClick={handleAnswerSubmit} replayClick={replayClick} finished={finished}/>
 			<Message isCorrect={isCorrect} />
 		</div>
 	);
