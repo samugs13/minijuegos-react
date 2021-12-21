@@ -6,6 +6,7 @@ import { LangContext } from "../lang/LangContext.component";
 import LangSelector from "../lang/LangSelector.component";
 import Game from './Game.component'
 import Actionbar from './content/Actionbar.component';
+import Score from './content/Score.component'
 import Message from './content/Message.component'
 
 export default function Quiz() {
@@ -24,11 +25,10 @@ export default function Quiz() {
 	async function fetchData() {
 		const res = await fetch("https://core.dit.upm.es/api/quizzes/random10wa?token=c077a2641b40e0fb129a");
 		const myjson = await res.json();
-		console.log(myjson);
 		setQuizzes(myjson);
 		setUserAnswers(new Array(myjson.length).fill(""));
 		setLoaded(true);
-	  }
+	}
 
 	useEffect(() => {
 		fetchData();
@@ -93,16 +93,14 @@ export default function Quiz() {
 		const list = [...userAnswers];
 		list[currentQuiz] = answer;
 		setUserAnswers(list);
-		console.log(userAnswers);
 	}
 
 	function handleAnswerSubmit() {
 		let acertadas = 0
-		for (let i = 0; i < quizzes.length; i++) {	
+		for (let i = 0; i < quizzes.length; i++) {
 			if (userAnswers[i].toLowerCase() === quizzes[i].answer.toLowerCase()) {
 				acertadas += 1;
 				setIsCorrect(true);
-				console.log(score);
 			}
 			else {
 				setIsCorrect(false);
@@ -122,13 +120,19 @@ export default function Quiz() {
 	return (
 		<div>
 			<h1>{lang.dictionary["QUIZ"]}</h1>
-			{quizzes[currentQuiz] ?
-			<Game quiz={quizzes[currentQuiz]} onChangeUserAnswer={onChangeUserAnswer} nextClick={nextClick} previousClick={previousClick} finished={finished} score={score}/>
-			:
-			<div className="spinner-border" role="status">
-				<span className="visually-hidden">Loading...</span>
-			</div>
-			}
+			{quizzes[currentQuiz] ? (
+				<div>
+					{finished ? (
+						<Score score={score}/>
+					) : (
+						<Game quiz={quizzes[currentQuiz]} onChangeUserAnswer={onChangeUserAnswer} nextClick={nextClick} previousClick={previousClick}/>
+					)}
+				</div>
+			) : (
+				<div className="spinner-border" role="status">
+					<span className="visually-hidden">Loading...</span>
+				</div>
+			) }
 			<Actionbar nextClick={nextClick} previousClick={previousClick} submitClick={handleAnswerSubmit} reClick={reset} finished={finished}/>
 			<Message isCorrect={isCorrect} />
 		</div>

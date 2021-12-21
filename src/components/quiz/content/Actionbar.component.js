@@ -11,16 +11,15 @@ export default function Actionbar(props) {
 	return (
 		<div>
 			{props.finished ?
-				<Replay click={props.reClick}/>
-				:
-				<div>
-					<Reset click={props.reClick}/>
-					<Previous click={props.previousClick} />
-					<Next click={props.nextClick} />
-					<Submit click={props.submitClick} />
-				</div>
+			<Replay click={props.reClick}/>
+			:
+			<div>
+				<Reset click={props.reClick}/>
+				<Previous click={props.previousClick} />
+				<Next click={props.nextClick} />
+				<Submit click={props.submitClick} />
+			</div>
 			}
 		</div>
 	);
 }
-

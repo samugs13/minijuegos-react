@@ -11,8 +11,6 @@ export default function Tictactoe(props) {
   const PLAYERX = lang.dictionary["player1"];
   const PLAYER0 = lang.dictionary["player2"];
 
-  console.log(PLAYERX);
-
   const [turn, setTurn] = useState(PLAYERX);
   const [moves, setMoves] = useState(0);
   const [values, setValues] = useState([
@@ -26,37 +24,36 @@ export default function Tictactoe(props) {
     document.title = lang.dictionary["turn"] + turn;
   });
 
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("http://myjson.dit.upm.es/api/bins/ccr5");
-      const myjson = await res.json();
-      console.log(myjson);
-      setTurn(myjson.turn);
-      setMoves(myjson.moves);
-      setValues(myjson.values);
-    }
+	useEffect(() => {
+		async function fetchData() {
+			const res = await fetch("http://myjson.dit.upm.es/api/bins/ccr5");
+			const myjson = await res.json();
+			setTurn(myjson.turn);
+			setMoves(myjson.moves);
+			setValues(myjson.values);
+		}
 
-    fetchData();
-  }, []);
+		fetchData();
+	}, []);
 
-  function appClick(rowNumber, columnNumber) {
-      let valuesCopy = JSON.parse(JSON.stringify(values));
-      let newMovement = turn === PLAYERX ? 'X' : '0';
-      valuesCopy[rowNumber][columnNumber] = newMovement;
-      setTurn(turn === PLAYERX ? PLAYER0 : PLAYERX);
-      setValues(valuesCopy);
-      setMoves(moves + 1); 
-  }
+	function appClick(rowNumber, columnNumber) {
+		let valuesCopy = JSON.parse(JSON.stringify(values));
+		let newMovement = turn === PLAYERX ? 'X' : '0';
+		valuesCopy[rowNumber][columnNumber] = newMovement;
+		setTurn(turn === PLAYERX ? PLAYER0 : PLAYERX);
+		setValues(valuesCopy);
+		setMoves(moves + 1);
+	}
 
-  function resetClick(){
-    setTurn(PLAYERX);
-    setMoves(0);
-    setValues([
-      ['-', '-', '-'],
-      ['-', '-', '-'],
-      ['-', '-', '-']
-    ]);
-  }
+	function resetClick(){
+		setTurn(PLAYERX);
+		setMoves(0);
+		setValues([
+			['-', '-', '-'],
+			['-', '-', '-'],
+			['-', '-', '-']
+		]);
+	}
 
   let text = lang.dictionary["turnof"] + " " + turn;
   
