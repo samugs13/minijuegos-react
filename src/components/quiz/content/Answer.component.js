@@ -9,6 +9,12 @@ export default function Answer(props) {
 		props.onAnswerChange(e.target.value);
 	}
 
+	function handleKeyPress(e) {
+		if (e.key === 'Enter') {
+			props.handleEnterKey();
+		}
+	}
+
 	function checkAnswer() {
 		if (props.correct === false) return "is-invalid";
 		else if (props.correct === true) return "is-valid";
@@ -21,7 +27,9 @@ export default function Answer(props) {
 				className={`form-control ${checkAnswer()}`}
 				id="user-answer"
 				type="text"
-				onChange={handleAnswerChange}>
+				onChange={handleAnswerChange}
+				onKeyPress={handleKeyPress}
+			>
 			</input>
 			<div className="valid-feedback">
 				{dictionary.correct}

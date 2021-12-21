@@ -71,6 +71,14 @@ export default function Quiz() {
 		}
 	}, [finished]);
 
+	function nextQuiz() {
+		if (currentQuiz < quizzes.length - 1) {
+			setCurrentQuiz(currentQuiz + 1);
+		} else {
+			handleAnswerSubmit();
+		}
+	}
+
 	function nextClick(){
 		setCurrentQuiz(currentQuiz + 1);
 	}
@@ -137,7 +145,7 @@ export default function Quiz() {
 						<Score score={score}/>
 					)}
 
-					<Game quiz={quizzes[currentQuiz]} answerCorrect={answerCorrect[currentQuiz]} onChangeUserAnswer={onChangeUserAnswer} nextClick={nextClick} previousClick={previousClick} finished={finished}/>
+					<Game quiz={quizzes[currentQuiz]} answerCorrect={answerCorrect[currentQuiz]} onChangeUserAnswer={onChangeUserAnswer} handleEnterKey={nextQuiz} finished={finished}/>
 				</div>
 			) : (
 				<div className="spinner-border" role="status">

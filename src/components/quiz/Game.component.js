@@ -11,7 +11,7 @@ export default function Game(props) {
 		<div>
 			<Question question={quiz.question} photo={quiz.attachment}/>
 			<Author author={quiz.author}/>
-			<Answer onAnswerChange={props.onChangeUserAnswer} correct={props.answerCorrect}/>
+			<Answer onAnswerChange={props.onChangeUserAnswer} correct={props.answerCorrect} handleEnterKey={props.handleEnterKey}/>
 		</div>
 	);
 }
