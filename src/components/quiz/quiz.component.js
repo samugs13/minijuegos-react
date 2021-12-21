@@ -26,7 +26,7 @@ export default function Quiz() {
 			const myjson = await res.json();
 			console.log(myjson);
 			setQuizzes(myjson);
-			setUserAnswers(new Array(myjson.length).fill(null));
+			setUserAnswers(new Array(myjson.length).fill(""));
 			setLoaded(true);
 		  }
 	  
@@ -80,20 +80,24 @@ export default function Quiz() {
 		const list = [...userAnswers];
 		list[currentQuiz] = answer;
 		setUserAnswers(list);
+		console.log(userAnswers);
 	}
 
 	function handleAnswerSubmit() {
-		if (userAnswers[currentQuiz].toLowerCase() === quizzes[currentQuiz].answer.toLowerCase()) {
-			setScore(score + 1);
-			setIsCorrect(true);
-			showNotification();
-			nextClick();
-			setFinished(true);
-		} else {
-			setIsCorrect(false);
-			showNotification();
-			setFinished(true);
+		let acertadas = 0
+		for (let i = 0; i < quizzes.length; i++) {	
+			if (userAnswers[i].toLowerCase() === quizzes[i].answer.toLowerCase()) {
+				acertadas += 1;
+				setIsCorrect(true);
+				console.log(score);
+			}
+			else {
+				setIsCorrect(false);
+			}
 		}
+
+		setScore(acertadas); //Si dentro del if ponía setScore(score+1) al final siempre valía 1 por algo del estado que se me escapa
+		setFinished(true)
 	}
 
 	function showNotification() {
@@ -104,17 +108,7 @@ export default function Quiz() {
 
 	return (
 		<div>
-			<h1>
-			QUIZ
-				<span
-					className="badge bg-success"
-					style={{
-						marginLeft: "10px",
-					}}
-				>
-					{score}
-				</span>
-			</h1>
+			<h1>QUIZ</h1>
 			{quizzes[currentQuiz] ?
 			<Game quiz={quizzes[currentQuiz]} onChangeUserAnswer={onChangeUserAnswer} nextClick={nextClick} previousClick={previousClick} finished={finished} score={score}/>
 			:

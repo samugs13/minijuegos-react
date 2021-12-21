@@ -3,8 +3,10 @@ import React from 'react';
 export default function Score(props) {
 
 	return (
-		<div>
-			<h3>{props.score}</h3>
-		</div>
+		<h1>
+            <span className="badge bg-success" style={{marginLeft: "10px",}}>
+                {props.score}
+            </span>
+		</h1>
 	);
 }
