@@ -7,6 +7,7 @@ import LangSelector from "../lang/LangSelector.component";
 import Game from './Game.component'
 import Actionbar from './content/Actionbar.component';
 import Score from './content/Score.component'
+import QuizNavBar from './content/QuizNavBar.component';
 import Message from './content/Message.component'
 
 export default function Quiz() {
@@ -18,13 +19,14 @@ export default function Quiz() {
 	const [finished, setFinished] = useState(false);
 
 	const [userAnswers, setUserAnswers] = useState([]);
-	const [isCorrect, setIsCorrect] = useState(false);
+	const [answerCorrect, setAnswerCorrect] = useState([]);
 
 	async function fetchData() {
 		const res = await fetch("https://core.dit.upm.es/api/quizzes/random10wa?token=c077a2641b40e0fb129a");
 		const myjson = await res.json();
 		setQuizzes(myjson);
 		setUserAnswers(new Array(myjson.length).fill(""));
+		setAnswerCorrect(new Array(myjson.length).fill(null));
 		setLoaded(true);
 	}
 
@@ -75,7 +77,6 @@ export default function Quiz() {
 		setScore(0);
 		setFinished(false);
 		setUserAnswers([])
-		setIsCorrect(false);
 		fetchData();
 		changeButtonState('prev-btn', false);
 	}
@@ -95,17 +96,19 @@ export default function Quiz() {
 
 	function handleAnswerSubmit() {
 		let acertadas = 0
+		let list = [...answerCorrect];
 		for (let i = 0; i < quizzes.length; i++) {
 			if (userAnswers[i].toLowerCase() === quizzes[i].answer.toLowerCase()) {
 				acertadas += 1;
-				setIsCorrect(true);
+				list[i] = true;
 			}
 			else {
-				setIsCorrect(false);
+				list[i] = false;
 			}
 		}
 
 		setScore(acertadas);
+		setAnswerCorrect(list);
 		setFinished(true)
 	}
 
@@ -120,11 +123,12 @@ export default function Quiz() {
 			<h1>QUIZ</h1>
 			{quizzes[currentQuiz] ? (
 				<div>
-					{finished ? (
+					<QuizNavBar index={currentQuiz} total={quizzes.length} answerCorrect={answerCorrect} onClick={setCurrentQuiz}/>
+					{finished && (
 						<Score score={score}/>
-					) : (
-						<Game quiz={quizzes[currentQuiz]} onChangeUserAnswer={onChangeUserAnswer} nextClick={nextClick} previousClick={previousClick}/>
 					)}
+
+					<Game quiz={quizzes[currentQuiz]} answerCorrect={answerCorrect[currentQuiz]} onChangeUserAnswer={onChangeUserAnswer} nextClick={nextClick} previousClick={previousClick} finished={finished}/>
 				</div>
 			) : (
 				<div className="spinner-border" role="status">
@@ -132,7 +136,6 @@ export default function Quiz() {
 				</div>
 			) }
 			<Actionbar nextClick={nextClick} previousClick={previousClick} submitClick={handleAnswerSubmit} reClick={reset} finished={finished}/>
-			<Message isCorrect={isCorrect} />
 		</div>
 	);
 }

@@ -10,16 +10,20 @@ import Reset from '../actions/Reset.component';
 export default function Actionbar(props) {
 	return (
 		<div>
-			{props.finished ?
-			<Replay click={props.reClick}/>
-			:
-			<div>
-				<Reset click={props.reClick}/>
-				<Previous click={props.previousClick} />
-				<Next click={props.nextClick} />
-				<Submit click={props.submitClick} />
-			</div>
-			}
+			{props.finished ? (
+				<div>
+					<Previous click={props.previousClick} />
+					<Next click={props.nextClick} />
+					<Replay click={props.reClick}/>
+				</div>
+			) : (
+				<div>
+					<Previous click={props.previousClick} />
+					<Next click={props.nextClick} />
+					<Reset click={props.reClick}/>
+					<Submit click={props.submitClick} />
+				</div>
+			)}
 		</div>
 	);
 }
