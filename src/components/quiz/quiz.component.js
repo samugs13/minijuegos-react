@@ -6,6 +6,7 @@ import { quizzes as mockData } from "../../assets/mock-data";
 import LangSelector from "../lang/LangSelector.component";
 import Game from './Game.component'
 import Actionbar from './content/Actionbar.component';
+import Score from './content/Score.component'
 import Message from './content/Message.component'
 
 export default function Quiz() {
@@ -117,13 +118,19 @@ export default function Quiz() {
 	return (
 		<div>
 			<h1>QUIZ</h1>
-			{quizzes[currentQuiz] ?
-			<Game quiz={quizzes[currentQuiz]} onChangeUserAnswer={onChangeUserAnswer} nextClick={nextClick} previousClick={previousClick} finished={finished} score={score}/>
-			:
-			<div className="spinner-border" role="status">
-				<span className="visually-hidden">Loading...</span>
-			</div>
-			}
+			{quizzes[currentQuiz] ? (
+				<div>
+					{finished ? (
+						<Score score={score}/>
+					) : (
+						<Game quiz={quizzes[currentQuiz]} onChangeUserAnswer={onChangeUserAnswer} nextClick={nextClick} previousClick={previousClick}/>
+					)}
+				</div>
+			) : (
+				<div className="spinner-border" role="status">
+					<span className="visually-hidden">Loading...</span>
+				</div>
+			) }
 			<Actionbar nextClick={nextClick} previousClick={previousClick} submitClick={handleAnswerSubmit} reClick={reset} finished={finished}/>
 			<Message isCorrect={isCorrect} />
 		</div>
