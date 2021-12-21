@@ -20,12 +20,18 @@ export default function Quiz() {
 	const [isCorrect, setIsCorrect] = useState(false);
 
 	useEffect(() => {
-		if (mockData.length > 0) {
-			setQuizzes(mockData);
-			setUserAnswers(new Array(mockData.length).fill(null));
+
+		async function fetchData() {
+			const res = await fetch("https://core.dit.upm.es/api/quizzes/random10wa?token=c077a2641b40e0fb129a");
+			const myjson = await res.json();
+			console.log(myjson);
+			setQuizzes(myjson);
+			setUserAnswers(new Array(myjson.length).fill(null));
 			setLoaded(true);
-		}
-		changeButtonState('prev-btn', false);
+		  }
+	  
+		  fetchData();
+		  changeButtonState('prev-btn', false);
 	}, []);
 
 	useEffect(() => {
