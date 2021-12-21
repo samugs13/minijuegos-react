@@ -17,5 +17,15 @@
     "previous": "Previous",
     "submit": "Submit",
     "score": "Score",
-    "replay": "Play again"
+    "replay": "Play again",
+    "author": "Created by:",
+    "tictactoe": "Tic Tac Toe",
+    "quiz": "Quiz",
+    "QUIZ": "QUIZ",
+    "player1": "Player 1 - Xs",
+    "player2": "Player 2 - 0s",
+    "minigames": "Mini-games",
+    "correct": "Correct",
+    "incorrect": "incorrect",
+    "home": "Home"
 }

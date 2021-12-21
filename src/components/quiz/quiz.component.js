@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {Toast} from "bootstrap";
 
 import { quizzes as mockData } from "../../assets/mock-data";
-
+import { LangContext } from "../lang/LangContext.component";
 import LangSelector from "../lang/LangSelector.component";
 import Game from './Game.component'
 import Actionbar from './content/Actionbar.component';
 import Message from './content/Message.component'
 
 export default function Quiz() {
+
+	const lang = useContext(LangContext);
 
 	const [quizzes, setQuizzes] = useState([]);
 	const [loaded, setLoaded] = useState(false);
@@ -119,7 +121,7 @@ export default function Quiz() {
 
 	return (
 		<div>
-			<h1>QUIZ</h1>
+			<h1>{lang.dictionary["QUIZ"]}</h1>
 			{quizzes[currentQuiz] ?
 			<Game quiz={quizzes[currentQuiz]} onChangeUserAnswer={onChangeUserAnswer} nextClick={nextClick} previousClick={previousClick} finished={finished} score={score}/>
 			:
