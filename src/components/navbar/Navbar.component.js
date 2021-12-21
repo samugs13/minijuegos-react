@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { LangContext } from "./components/lang/LangContext.component";
-import LangSelector from "./components/lang/LangSelector.component";
-import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import { LangContext } from "../lang/LangContext.component";
+import LangSelector from "../lang/LangSelector.component";
 
 export default function Navbar() {
 

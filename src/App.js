@@ -4,10 +4,10 @@ import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './css/App.css';
 
+import Navbar from './components/navbar/Navbar.component';
 import Home from './components/home/home.component';
 import Quiz from './components/quiz/quiz.component';
 import Tictactoe from './components/tictactoe/tictactoe.component';
-import Navbar from './Navbar.component';
 
 // Language selector
 import { LangContext } from "./components/lang/LangContext.component";
