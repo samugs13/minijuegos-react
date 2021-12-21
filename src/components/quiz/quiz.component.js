@@ -64,6 +64,13 @@ export default function Quiz() {
 		}
 	}, [loaded, currentQuiz]);
 
+	useEffect(() => {
+		const answerField = document.getElementById('user-answer');
+		if (answerField) {
+			answerField.disabled = !!finished;
+		}
+	}, [finished]);
+
 	function nextClick(){
 		setCurrentQuiz(currentQuiz + 1);
 	}

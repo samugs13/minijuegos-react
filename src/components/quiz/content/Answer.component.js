@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { LangContext } from "../../lang/LangContext.component";
 
 export default function Answer(props) {
+	const dictionary = useContext(LangContext).dictionary;
+
 	function handleAnswerChange(e) {
 		props.onAnswerChange(e.target.value);
 	}
@@ -13,12 +17,17 @@ export default function Answer(props) {
 
 	return (
 		<div className="col-md-2 mx-auto">
-			<input className={`form-control ${checkAnswer()}`} id="user-answer" type="text" onChange={handleAnswerChange}></input>
+			<input
+				className={`form-control ${checkAnswer()}`}
+				id="user-answer"
+				type="text"
+				onChange={handleAnswerChange}>
+			</input>
 			<div className="valid-feedback">
-			Correct!
+				{dictionary.correct}
 			</div>
 			<div className="invalid-feedback">
-			Incorrect!
+				{dictionary.incorrect}
 			</div>
 		</div>
 	);
