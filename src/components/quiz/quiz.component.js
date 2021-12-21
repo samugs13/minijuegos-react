@@ -68,7 +68,7 @@ export default function Quiz() {
 		setCurrentQuiz(currentQuiz - 1);
 	}
 
-	function replayClick(){
+	function reset(){
 		setQuizzes([]);
 		setLoaded(false);
 		setCurrentQuiz(0);
@@ -107,7 +107,7 @@ export default function Quiz() {
 			}
 		}
 
-		setScore(acertadas); //Si dentro del if ponía setScore(score+1) al final siempre valía 1 por algo del estado que se me escapa
+		setScore(acertadas);
 		setFinished(true)
 	}
 
@@ -127,7 +127,7 @@ export default function Quiz() {
 				<span className="visually-hidden">Loading...</span>
 			</div>
 			}
-			<Actionbar nextClick={nextClick} previousClick={previousClick} submitClick={handleAnswerSubmit} replayClick={replayClick} finished={finished}/>
+			<Actionbar nextClick={nextClick} previousClick={previousClick} submitClick={handleAnswerSubmit} reClick={reset} finished={finished}/>
 			<Message isCorrect={isCorrect} />
 		</div>
 	);
