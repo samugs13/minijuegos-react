@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import {Toast} from "bootstrap";
 
-import { quizzes as mockData } from "../../assets/mock-data";
 import { LangContext } from "../lang/LangContext.component";
-import LangSelector from "../lang/LangSelector.component";
 import Actionbar from './content/Actionbar.component';
 import Score from './content/Score.component'
 import QuizNavBar from './content/QuizNavBar.component';
@@ -47,12 +45,6 @@ export default function Quiz() {
 	}, []);
 
 	useEffect(() => {
-		// Set saved user answer
-		const answerField = document.getElementById('user-answer');
-		if (answerField) {
-			answerField.value = userAnswers[currentQuiz];
-		}
-
 		// Set buttons state
 		if (!loaded) {
 			changeButtonState('prev-btn', false);
@@ -71,7 +63,16 @@ export default function Quiz() {
 			changeButtonState('next-btn', true);
 			changeButtonState('submit-btn', true);
 		}
-	}, [loaded, currentQuiz]);
+	}, [loaded, currentQuiz, quizzes]);
+
+	useEffect(() => {
+		// Set saved user answer
+		const answerField = document.getElementById('user-answer');
+		if (answerField) {
+			answerField.value = userAnswers[currentQuiz];
+		}
+
+	}, [loaded, currentQuiz, userAnswers]);
 
 	useEffect(() => {
 		const answerField = document.getElementById('user-answer');

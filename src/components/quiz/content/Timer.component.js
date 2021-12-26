@@ -4,7 +4,6 @@ export default function Timer(props) {
 	const {initialMinute = 0,initialSeconds = 0} = props;
 	const [ minutes, setMinutes ] = useState(initialMinute);
 	const [ seconds, setSeconds ] =  useState(initialSeconds);
-	const [ timeOut, setTimeOut ] = useState(false);
 
 	useEffect(()=>{
 		let myInterval = setInterval(() => {
@@ -12,11 +11,10 @@ export default function Timer(props) {
 				setSeconds(seconds - 1);
 			}
 			if (seconds === 0) {
-				if (minutes == 0) {
+				if (minutes === 0) {
 					if (props.onTimeOut) {
 						props.onTimeOut();
 					}
-					setTimeOut(true);
 					clearInterval(myInterval)
 				} else {
 					setMinutes(minutes - 1);
@@ -31,10 +29,7 @@ export default function Timer(props) {
 
 	return (
 		<div>
-			{ minutes === 0 && seconds === 0
-			? null
-			: <h1> {minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</h1>
-			}
+			<h1> {minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</h1>
 		</div>
 	);
 }

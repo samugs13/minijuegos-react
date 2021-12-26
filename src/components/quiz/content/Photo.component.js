@@ -6,7 +6,7 @@ export default function Photo(props) {
 
 	return (
 		<div>
-			<img src={displayPhoto} className="city-photo"/>
+			<img src={displayPhoto} className="city-photo" alt="quiz"/>
 		</div>
 	);
 }
