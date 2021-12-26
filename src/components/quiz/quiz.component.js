@@ -139,12 +139,12 @@ export default function Quiz() {
 	}
 
 	function onTimeOut() {
-		showNotification();
+		showNotification("notification-timeout");
 		handleAnswerSubmit();
 	}
 
-	function showNotification() {
-		const toastAnswer = document.getElementById("toast")
+	function showNotification(id) {
+		const toastAnswer = document.getElementById(id)
 		const toast = new Toast(toastAnswer);
 		toast.show()
 	}
@@ -192,7 +192,7 @@ export default function Quiz() {
 					<span className="visually-hidden">Loading...</span>
 				</div>
 			) }
-			<Message message={lang.dictionary.timeout}/>
+			<Message id="notification-timeout" message={lang.dictionary.timeout}/>
 		</div>
 	);
 }
