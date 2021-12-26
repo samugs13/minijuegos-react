@@ -4,7 +4,6 @@ export default function LangSelector(props) {
 	return (
 		<LangContext.Consumer>
 			{(context) => {
-				console.log(context);
 				return  (
 					<select onChange={context.handleLanguageChange} value={context.userLang}>
 						<option key="es" value="es">{context.dictionary["es"]}</option>

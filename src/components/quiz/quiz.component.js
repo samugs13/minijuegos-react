@@ -4,11 +4,15 @@ import {Toast} from "bootstrap";
 import { quizzes as mockData } from "../../assets/mock-data";
 import { LangContext } from "../lang/LangContext.component";
 import LangSelector from "../lang/LangSelector.component";
-import Game from './Game.component'
 import Actionbar from './content/Actionbar.component';
 import Score from './content/Score.component'
 import QuizNavBar from './content/QuizNavBar.component';
 import Message from './content/Message.component'
+import Question from './content/Question.component'
+import Photo from './content/Photo.component'
+import Answer from './content/Answer.component'
+import Author from './content/Author.component'
+import Timer from './content/Timer.component'
 
 export default function Quiz() {
 
@@ -19,6 +23,11 @@ export default function Quiz() {
 	const [currentQuiz, setCurrentQuiz] = useState(0);
 	const [score, setScore] = useState(0);
 	const [finished, setFinished] = useState(false);
+
+	const [timer, setTimer] = useState({
+		minutes: 20,
+		seconds: 0
+	});
 
 	const [userAnswers, setUserAnswers] = useState([]);
 	const [answerCorrect, setAnswerCorrect] = useState([]);
@@ -129,8 +138,13 @@ export default function Quiz() {
 		setFinished(true)
 	}
 
+	function onTimeOut() {
+		showNotification();
+		handleAnswerSubmit();
+	}
+
 	function showNotification() {
-		const toastAnswer = document.getElementById("toast-answer")
+		const toastAnswer = document.getElementById("toast")
 		const toast = new Toast(toastAnswer);
 		toast.show()
 	}
@@ -139,20 +153,46 @@ export default function Quiz() {
 		<div>
 			<h1>{lang.dictionary["QUIZ"]}</h1>
 			{quizzes[currentQuiz] ? (
-				<div>
-					<QuizNavBar index={currentQuiz} total={quizzes.length} userAnswers={userAnswers} answerCorrect={answerCorrect} onClick={setCurrentQuiz}/>
-					{finished && (
-						<Score score={score}/>
-					)}
-
-					<Game quiz={quizzes[currentQuiz]} answerCorrect={answerCorrect[currentQuiz]} onChangeUserAnswer={onChangeUserAnswer} handleEnterKey={nextQuiz} finished={finished}/>
+				<div className="container">
+					<div className="row">
+						<QuizNavBar index={currentQuiz} total={quizzes.length} userAnswers={userAnswers} answerCorrect={answerCorrect} onClick={setCurrentQuiz}/>
+					</div>
+					<div className="row row-cols-2 my-5 justify-content-center" style={{height:"40vh"}}>
+						<div className="d-flex flex-column" style={{height:"100%"}}>
+							<Photo photo={quizzes[currentQuiz].attachment}/>
+						</div>
+						<div
+							className="d-flex justify-content-around flex-column"
+							style={{minHeight:"100%"}}
+						>
+							<div className="d-flex justify-content-around">
+								{finished ? (
+									<Score score={score}/>
+								) : (
+									<Timer initialMinute={timer.minutes} initialSeconds={timer.seconds} onTimeOut={onTimeOut}/>
+								)}
+							</div>
+							<div>
+								<Question question={quizzes[currentQuiz].question}/>
+							</div>
+							<div>
+								<Answer onAnswerChange={onChangeUserAnswer} correctAnswer={quizzes[currentQuiz].answer} correct={answerCorrect} handleEnterKey={nextQuiz}/>
+							</div>
+							<div>
+								<Actionbar nextClick={nextClick} previousClick={previousClick} submitClick={handleAnswerSubmit} reClick={reset} finished={finished}/>
+							</div>
+							<div className="align-self-end">
+								<Author author={quizzes[currentQuiz].author}/>
+							</div>
+						</div>
+					</div>
 				</div>
 			) : (
 				<div className="spinner-border" role="status">
 					<span className="visually-hidden">Loading...</span>
 				</div>
 			) }
-			<Actionbar nextClick={nextClick} previousClick={previousClick} submitClick={handleAnswerSubmit} reClick={reset} finished={finished}/>
+			<Message message={lang.dictionary.timeout}/>
 		</div>
 	);
 }

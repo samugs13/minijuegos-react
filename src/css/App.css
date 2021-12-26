@@ -53,14 +53,15 @@ body {
 }
 
 .profile-photo {
-	width: 100px;
-	height: 100px;
+	width: 100%;
+	height: auto;
 	border-radius: 50%;
 	margin: 0 auto;
 	display: block;
 }
 
 .city-photo {
-	width: 500px;
-	height: 500px;
+	width: 100%;
+	height: auto;
+	max-height: 100%;
 }

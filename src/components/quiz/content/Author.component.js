@@ -9,10 +9,12 @@ export default function Author(props) {
 	const displayPhoto = author ? author.photo.url || "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y" : "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y";
 
 	return (
-		<div>
-			<div>
+		<div className="container row">
+			<div className="col-2">
 				<img src={displayPhoto} className="profile-photo" alt="profile" />
-				<h5>{lang.dictionary["author"]} {displayName}</h5>
+			</div>
+			<div className="col d-flex align-items-end text-start">
+				<p>{lang.dictionary["author"]} {displayName}</p>
 			</div>
 		</div>
 	);

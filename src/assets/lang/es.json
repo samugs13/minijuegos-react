@@ -27,5 +27,6 @@
     "minigames": "Minijuegos",
     "correct": "Correcto",
     "incorrect": "Incorrecto",
-    "home": "Página principal"
+    "home": "Página principal",
+	"timeout": "Se ha agotado el tiempo"
 }

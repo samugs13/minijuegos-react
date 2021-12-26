@@ -22,7 +22,7 @@ export default function Answer(props) {
 	}
 
 	return (
-		<div className="col-md-2 mx-auto">
+		<div className="col-7 mx-auto">
 			<input
 				className={`form-control ${checkAnswer()}`}
 				id="user-answer"

@@ -27,5 +27,6 @@
     "minigames": "Mini-games",
     "correct": "Correct",
     "incorrect": "Incorrect",
-    "home": "Home"
+    "home": "Home",
+	"timeout": "You ran out of time!"
 }
