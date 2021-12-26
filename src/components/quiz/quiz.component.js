@@ -177,7 +177,7 @@ export default function Quiz() {
 								<Question question={quizzes[currentQuiz].question}/>
 							</div>
 							<div>
-								<Answer onAnswerChange={onChangeUserAnswer} correctAnswer={quizzes[currentQuiz].answer} correct={answerCorrect} handleEnterKey={nextQuiz}/>
+								<Answer onAnswerChange={onChangeUserAnswer} correctAnswer={quizzes[currentQuiz].answer} correct={answerCorrect[currentQuiz]} handleEnterKey={nextQuiz}/>
 							</div>
 							<div>
 								<Actionbar nextClick={nextClick} previousClick={previousClick} submitClick={handleAnswerSubmit} reClick={reset} finished={finished}/>
