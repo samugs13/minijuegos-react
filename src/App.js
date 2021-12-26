@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Routes, Route, Link, BrowserRouter } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './css/App.css';
@@ -17,12 +17,20 @@ const dictionaryList = { en, es };
 
 
 function App() {
+	const [lang, setLang] = useState('es');
+
+	useEffect(() => {
+		const lang = window.navigator.language;
+		if (lang.startsWith('es')) {
+			setLang('es');
+		} else {
+			setLang('en');
+		}
+	}, []);
 
 	const handleLanguageChange = (event) => {
 		setLang(event.target.value);
 	}
-
-	const [lang, setLang] = useState('es');
 
 	return (
 		<div className="App">
