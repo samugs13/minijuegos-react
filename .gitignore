@@ -128,3 +128,6 @@ dist
 
 # yarn lock
 yarn.lock
+
+# npm lock
+package-lock.json
